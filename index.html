@@ -278,6 +278,7 @@
 <p>在同步通讯中，数据信号所传输的内容绝大部分就是有效数据，而异步通讯中会包含有帧的各种标识符，所以同步通讯的效率更高，但是同步通讯双方的时钟允许误差较小，而异步通讯双方的时钟允许误差较大。</p>
 </blockquote>
 <p>使用同步的协议：I2C，SPI</p>
+<p>使用异步的协议: CAN</p>
 <p><strong>同步：有时钟信号</strong>，对时钟的要求比较高，时钟信号为高电平时对应的数据是有效的，低电平时对应的数据是无效的（因为0&amp;0 = 0和0&amp;1=0）</p>
 <p><img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201107192632499.png" alt="image-20201107192632499"></p>
 <p><strong>异步：无时钟信号</strong>，为了保证数据的可靠性，加上校验位</p>
@@ -303,12 +304,24 @@
 <p><img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201107202954016.png" alt="image-20201107202954016"></p>
 <h2 id="USB转串口"><a href="#USB转串口" class="headerlink" title="USB转串口"></a>USB转串口</h2><h2 id="原生的串口到串口"><a href="#原生的串口到串口" class="headerlink" title="原生的串口到串口"></a><strong>原生的<img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201107203524624.png" alt="image-20201107203524624">串口到串口</strong></h2><p><img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201107203537924.png" alt="image-20201107203537924"></p>
 <p><img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201107204301343.png" alt="image-20201107204301343"></p>
-<h1 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h1><blockquote>
+<h1 id="I2C（读写EEPROM）"><a href="#I2C（读写EEPROM）" class="headerlink" title="I2C（读写EEPROM）"></a>I2C（读写EEPROM）</h1><h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a><strong>物理层</strong></h2><p><strong>开漏模式</strong></p>
+<blockquote>
 <p>I2C 通讯协议(Inter－Integrated Circuit)是由Phiilps公司开发的，由于它引脚少，硬件实现简单，可扩展性强，不需要USART、CAN等通讯协议的外部收发设备，现在被广泛地使用在系统内多个集成电路(IC)间的通讯。</p>
 </blockquote>
 <p><strong>线与，从机低电平拉低，（从机高阻态）由上拉电阻高电平拉高为1</strong></p>
 <p><img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201108145744775.png" alt="image-20201108145744775"></p>
 <p><img src="C:\Users\Accow\AppData\Roaming\Typora\typora-user-images\image-20201108145149485.png" alt="image-20201108145149485"></p>
+<h2 id="协议层"><a href="#协议层" class="headerlink" title="协议层"></a>协议层</h2><p>发数据包</p>
+<p><img src="%E9%80%9A%E4%BF%A1.assets/image-20201108160854502.png" alt="image-20201108160854502"></p>
+<p>读数据包</p>
+<p><img src="%E9%80%9A%E4%BF%A1.assets/image-20201108160830094.png" alt="image-20201108160830094"></p>
+<h1 id="SPI（读写串行FLASH）"><a href="#SPI（读写串行FLASH）" class="headerlink" title="SPI（读写串行FLASH）"></a>SPI（读写串行FLASH）</h1><blockquote>
+<p>SPI协议是由摩托罗拉公司提出的通讯协议(Serial Peripheral Interface)，即串行外围设备接口，是一种高速全双工的通信总线。它被广泛地使用在ADC、LCD等设备与MCU间，要求通讯速率较高的场合。</p>
+</blockquote>
+<p><img src="%E9%80%9A%E4%BF%A1.assets/image-20201108164017484.png" alt="image-20201108164017484"></p>
+<p><img src="%E9%80%9A%E4%BF%A1.assets/image-20201108165123261.png" alt="image-20201108165123261"></p>
+<h1 id="CAN"><a href="#CAN" class="headerlink" title="CAN"></a>CAN</h1><p>与I2C、SPI等具有时钟信号的同步通讯方式不同，CAN通讯并不是以时钟信号来进行同步的，它是一种异步通讯，只具有CAN_High和CAN_Low两条信号线，共同构成一组差分信号线，以差分信号的形式进行通讯。</p>
+<p>CAN物理层的形式主要分为闭环总线及开环总线网络两种，一个适合于高速通讯，一个适合于远距离通讯。</p>
 
       
 
@@ -406,6 +419,13 @@
 <p><strong>视频</strong></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yW411Y7Gw?p=9">https://www.bilibili.com/video/BV1yW411Y7Gw?p=9</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yW411Y7Gw?p=10">https://www.bilibili.com/video/BV1yW411Y7Gw?p=10</a></p>
+<h2 id="推挽，灌电流和拉电流"><a href="#推挽，灌电流和拉电流" class="headerlink" title="推挽，灌电流和拉电流"></a>推挽，灌电流和拉电流</h2><p>这个概念是针对GPIO口的输出模式，电流流入GPIO为灌电流，电流从GPIO口输出为拉电流。（GPIO为被动对象）</p>
+<p><strong>拉电流，推</strong></p>
+<p><img src="stm32.assets/image-20201108153418597.png" alt="image-20201108153418597"></p>
+<p><strong>灌电流，挽</strong></p>
+<p><img src="stm32.assets/image-20201108153515628.png" alt="image-20201108153515628"></p>
+<h2 id="开漏"><a href="#开漏" class="headerlink" title="开漏"></a>开漏</h2><p>II2</p>
+<p>线与，高阻态</p>
 <h1 id="固件库编程，新建工程"><a href="#固件库编程，新建工程" class="headerlink" title="固件库编程，新建工程"></a>固件库编程，新建工程</h1><p>文件路径：E:\Download\【正点原子】精英STM32F103开发板\【正点原子】精英STM32F103开发板资料 资料盘(A盘)\8，STM32参考资料\1，STM32F1xx固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries</p>
 <p>程序源码文件里都有可复制的模板新工程</p>
 <p>野火：E:\AsusSync\stm32\fireclass\0-视频配套的PPT和程序汇总（视频里写的代码都放在这里）\11-新建工程—固件库版本</p>
@@ -704,11 +724,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RAM，ROM，DDR</a>
+                <a href="javascript:void(0)" class="js-tag color3">同步，异步，串口，IIC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">同步，异步，串口，IIC</a>
+                <a href="javascript:void(0)" class="js-tag color2">RAM，ROM，DDR</a>
               </li>
             
             <div class="clearfix"></div>
